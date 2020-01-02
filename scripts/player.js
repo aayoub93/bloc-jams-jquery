@@ -14,10 +14,14 @@ class Player {
     return this.soundObject.getTime();
   }
 
-  prettyTime (timeInSeconds = this.soundObject.getDuration(song)) {
-    const min = Math.floor((timeInSeconds / 60));
-    const sec = ((timeInSeconds % 60));
-    return (min + ":" + sec);
+  prettyTime (song) {
+    const min = Math.floor((song / 60));
+    const sec = Number(song % 60 / 100).toFixed(2).substring(2); //This uses the
+    //Number.prototype.toFixed() code, where prototype is whatever you need to pass
+    //into the code, and toFixed = how many decimal places. For time, it would
+    //be 2. Substring returns passed inputs as strings, which will help when
+    //denoting time.
+    return (min+':'+sec);
   }
 
   playPause (song = this.currentlyPlaying) {
